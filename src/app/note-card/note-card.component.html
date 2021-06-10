@@ -1,0 +1,25 @@
+<div class="top">
+    <div class="card" *ngIf="condition">
+
+        <p>{{inputNote.id}}.{{inputNote.name}}</p>
+        <p>{{inputNote.maintext}}</p>
+        <p>{{inputNote.date|date:'dd.MM.yyyy HH:mm:ss'}}</p>
+        <p>{{inputNote.dataChanged|date:'dd.MM.yy H:mm'}}</p>
+        <!-- <p>Тип заметки: <a href="http://localhost:3000/Types/{{inputNote.type}}">{{typename}}</a></p> -->
+        <input type="button" value="Удалить" (click)="onDeleteNote()">
+        <input type="button" value="Редактировать" (click)="onEditNote()">
+
+    </div>
+    <!-- <form [formGroup]="cardForm" class="card">
+        <p><input type="text" name="notetitle" formControlName="name"></p>
+        <p><textarea name="maintext" class="maintext" formControlName="maintext"></textarea></p>
+    </form> -->
+    <div class="card" *ngIf="!condition">
+        <form [formGroup]='cardForm'>
+            <p><input type="text" name="notetitle" formControlName="name"></p>
+            <p><textarea type="text" name="maintext" formControlName="maintext"></textarea></p>
+        </form>
+        <input type="button" value="Сохранить" (click)="onEditNoteSave()">
+
+    </div>
+</div>

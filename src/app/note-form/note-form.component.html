@@ -1,0 +1,23 @@
+<form class="top" [formGroup]="cardForm" (ngSubmit)="onAddNote()">
+    <p><input type="text" name="article" formControlName="name" [ngClass]="{'has-error': cardForm.get('name')?.invalid &&
+    cardForm.get('name')?.touched}"> Заголовок</p>
+    <p>
+        <textarea name="maintext" id="1" class="maintext" formControlName="maintext" [ngClass]="{'has-error': cardForm.get('maintext')?.invalid &&
+    cardForm.get('maintext')?.touched}"></textarea>
+    </p>
+    <form [formGroup]="typesForm">
+        <div>
+            <select name="type" id="type" formControlName="name">
+            <!-- <option *ngFor="let id of ids" value="{{type.id}}"></option> -->
+          </select>
+        </div>
+    </form>
+    <form [formGroup]='typesForm'>
+        <!-- <p>Название типа <input type="text" name="typename" {[ngModel]}='typename_'></p> -->
+        <p>Название типа <input type="text" name="typename"></p>
+        <input type="button" value="Добавить тип" (click)="onAddType()">
+        <input type="button" value="Удалить тип">
+    </form>
+
+    <input type="submit" value="Добавить" [disabled]='cardForm.invalid'>
+</form>

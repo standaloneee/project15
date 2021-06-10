@@ -1,0 +1,50 @@
+.card-main{
+    width: auto;
+}
+.maintext {
+    width: 300px;
+    height: 300px;
+}
+
+/* .card {
+    border: 1px black solid;
+    /* можно ширину поменьше сделать, но я думаю так лучше выглядит */
+    
+/* 
+.wrap{
+    display: grid;
+    width: auto;
+    grid-template-columns: 1fr;
+    min-width: 1200px;
+}
+@media (min-width:800px){
+    .wrap{
+        grid-template-columns: 1fr 1fr;
+    }
+}
+@media (min-width:1000px){
+    .wrap{
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+} */
+.wrap{
+    display: grid;
+    grid-template-columns: 1fr;
+    /* min-width: 1000px; */
+}
+@media (min-width:800px){
+    .wrap{
+        grid-template-columns: 1fr 1fr;
+        min-width: 800px;      
+    }
+}
+@media (min-width:1200px){
+    .wrap{
+        grid-template-columns: 1fr 1fr 1fr 1fr;        
+    }
+    
+}
+.top{
+    margin-left: 20px;
+    margin-top: 20px;
+}
