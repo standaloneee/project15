@@ -1,23 +1,35 @@
 <form class="top" [formGroup]="cardForm" (ngSubmit)="onAddNote()">
-    <p><input type="text" name="article" formControlName="name" [ngClass]="{'has-error': cardForm.get('name')?.invalid &&
+    <h2 class="element" style="width: 450px">Добавление заметки</h2>
+    <p class="element"><input style="width:192px" type="text" name="article" formControlName="name" [ngClass]="{'has-error': cardForm.get('name')?.invalid &&
     cardForm.get('name')?.touched}"> Заголовок</p>
-    <p>
-        <textarea name="maintext" id="1" class="maintext" formControlName="maintext" [ngClass]="{'has-error': cardForm.get('maintext')?.invalid &&
-    cardForm.get('maintext')?.touched}"></textarea>
+    <p class="element">
+        <textarea style="height:100px; width:194px" name="maintext" id="1" class="maintext" formControlName="maintext" [ngClass]="{'has-error': cardForm.get('maintext')?.invalid &&
+    cardForm.get('maintext')?.touched}"></textarea> Текст записки
     </p>
-    <form [formGroup]="typesForm">
+    <form class="element" [formGroup]="cardForm" style="margin-bottom: 15px;">
         <div>
-            <select name="type" id="type" formControlName="name">
-            <!-- <option *ngFor="let id of ids" value="{{type.id}}"></option> -->
+            <select class="element" style="margin: 0" id="type" formControlName="type">
+            <option name="typename" *ngFor="let type of types" [ngValue]='type.id' >{{type.name}}</option>
           </select>
         </div>
     </form>
-    <form [formGroup]='typesForm'>
-        <!-- <p>Название типа <input type="text" name="typename" {[ngModel]}='typename_'></p> -->
-        <p>Название типа <input type="text" name="typename"></p>
-        <input type="button" value="Добавить тип" (click)="onAddType()">
-        <input type="button" value="Удалить тип">
-    </form>
+    <div *ngIf="expression" class="element">
+        <form [formGroup]='typesForm'>
+            <input class="button" type="button" value="Редактировать тип" (click)="onChangeExpression()">
+        </form>
+    </div>
+    <div *ngIf="!expression" class="elementEdit">
+        <form [formGroup]='typesForm'>
+            <p>Название типа: <input class="input-group-text" id="basic-addon3" type="text" name="typename" formControlName='name'></p>
+            <input class="btn btn-outline-primary" type="button" value="Добавить тип" (click)='onAddType()'>
+            <div class="types" *ngFor="let type of types">
+                <p style="margin: 20px; margin-left:0px;">{{type.name}} <button class="btn btn-danger" type="button" (click)="onDeleteType(type.id)">Удалить</button></p>
+            </div>
+            <p>
+                <input class="btn btn-success" style="margin-top:15px;" type="button" value="Закрыть меню редактирования типов" (click)="onChangeExpression()">
+            </p>
+        </form>
+    </div>
 
-    <input type="submit" value="Добавить" [disabled]='cardForm.invalid'>
+    <input type="submit" value="Добавить заметку" [disabled]='cardForm.invalid' class="element">
 </form>

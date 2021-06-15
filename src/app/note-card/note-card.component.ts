@@ -11,10 +11,13 @@ import { HttpCardsService } from '../shared/services/http-cards.service';
   styleUrls: ['./note-card.component.css']
 })
 export class NoteCardComponent implements OnInit {
- 
+
   @Input() inputNote!: Note;
+  @Input() type: Types = { id: 0, name: "" };
+  @Input() types: Types[] = [];
   @Output() noteDelete = new EventEmitter<number>();
   @Output() noteEdit = new EventEmitter<Note>();
+  @Output() noteEditSave = new EventEmitter<Note>();
   condition = true;
   cardForm!: FormGroup;
   typesForm!: FormGroup;
@@ -25,67 +28,78 @@ export class NoteCardComponent implements OnInit {
     private fb: FormBuilder) { }
 
   ngOnInit(): void {
+    this.getTypes();
     const controls = {
-      name:[null, [Validators.required]],
+      name: [null, [Validators.required]],
       maintext: [null, [Validators.required]],
       date: new Date,
       dataChanged: new Date,
       type: [null, [Validators.required]]
-    }
-    const types = {
-      name: [null, [Validators.required]]
-    }
+    };
+
     this.cardForm = this.fb.group(controls);
-    this.typesForm = this.fb.group(types);
-    
+
+    if (this.inputNote) {
+      this.cardForm.patchValue(this.inputNote);
+    }
+  }
+  
+  async getTypes() {
+    try {
+      this.types = await this.HttpCardsService.getTypes();
+    } catch (error) {
+
+    }
   }
   onDeleteNote() {
     this.noteDelete.emit(this.inputNote.id);
   }
-  onEditNoteSave(){
+
+  onEditNoteSave() {
     this.inputNote.name = this.cardForm.controls["name"].value;
     this.inputNote.maintext = this.cardForm.controls["maintext"].value;
-    this.cardForm.controls["dataChanged"].setValue(new Date);
-    console.log(this.cardForm.value)
-    // this.inputNote.dataChanged
+    this.inputNote.dataChanged = new Date();
+    this.inputNote.type = this.cardForm.controls['type'].value;
+    if (this.inputNote.name == "" || this.inputNote.maintext == "") {
 
-    if(this.inputNote.name == "" || this.inputNote.maintext == ""){
-      
     }
-    else{
-    this.condition = !this.condition;
-    this.noteEdit.emit(this.inputNote)
+    else {
+      this.condition = !this.condition;
+      this.noteEdit.emit(this.inputNote)
     }
+  }
+  getTypeName(index: number) {
+    let type = this.types.find(x => x.id == index);
+    return (type?.name);
   }
   onEditNote() {
-   this.cardForm.controls["name"].setValue(this.inputNote.name)
-   this.cardForm.controls["maintext"].setValue(this.inputNote.maintext)
-   this.inputNote.date = new Date;
-   
-   this.noteEdit.emit(this.inputNote)
-   
-    if(this.inputNote.name == "" || this.inputNote.maintext == ""){
-      
+    this.getTypes();
+    this.cardForm.controls["name"].setValue(this.inputNote.name)
+    this.cardForm.controls["maintext"].setValue(this.inputNote.maintext)
+    this.inputNote.dataChanged = new Date;
+    this.noteEditSave.emit(this.inputNote)
+
+    if (this.inputNote.name == "" || this.inputNote.maintext == "") {
+
     }
-    else{
-    this.condition = !this.condition;
-    if (this.condition == true)
-    {
-      console.log("changed")
-    
-      if(this.inputNote.name == ""){
-        console.log("it's empty name")
-        this.inputNote.name = "name is empty";
-             }
-            
-             if(this.inputNote.maintext == ""){
-        console.log("it's empty maintext")
-        this.inputNote.maintext = "maintext is empty";
-             }
-          }
+    else {
+      this.condition = !this.condition;
+      if (this.condition == true) {
+        console.log("changed")
+
+        if (this.inputNote.name == "") {
+          console.log("it's empty name")
+          this.inputNote.name = "name is empty";
+        }
+
+        if (this.inputNote.maintext == "") {
+          console.log("it's empty maintext")
+          this.inputNote.maintext = "maintext is empty";
+        }
+      }
     }
   }
-  
-    
-    
+
+
+
 }

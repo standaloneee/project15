@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Note } from 'src/app/interface';
+import { Types } from 'src/app/types';
 
 @Injectable({
   providedIn: 'root'
@@ -8,7 +9,7 @@ import { Note } from 'src/app/interface';
 export class HttpCardsService {
   
 routeAPI = 'http://localhost:3000/cards';
-cardsAPI = 'http://localhost:3000/Types';
+typesAPI = 'http://localhost:3000/Types';
   constructor(private http: HttpClient) {}
    getCards():Promise<any>{
     return this.http.get(this.routeAPI).toPromise();
@@ -25,6 +26,13 @@ cardsAPI = 'http://localhost:3000/Types';
   }
   getTypes():Promise<any>
   {
-    return this.http.get(this.cardsAPI).toPromise();
+    return this.http.get(this.typesAPI).toPromise();
+  }
+  deleteType(id:number){
+    return this.http.delete(this.typesAPI+`/${id}`).toPromise();
+  }
+  postType(type: Types){
+    console.log(type)
+    return this.http.post(this.typesAPI, type).toPromise();
   }
 }

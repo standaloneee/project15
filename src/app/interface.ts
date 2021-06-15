@@ -4,5 +4,5 @@ export interface Note {
     maintext: string;
     date: Date;
     dataChanged: Date,
-    type: string; 
+    type: number; 
 }

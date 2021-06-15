@@ -1,7 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
 import { Note } from './interface';
-import { NoteCardComponent } from './note-card/note-card.component';
+import { Types } from './types';
 import { HttpCardsService } from './shared/services/http-cards.service';
 import { MyFirstService } from './shared/services/my-first.service';
 
@@ -24,11 +23,18 @@ export class AppComponent implements OnInit{
   // article = '';
   // maintext = '';
   notes!: Note[];
+  types!: Types[];
   // idnumber = 1;
   
-  
+async onDeleteType(index: number){
+try {
+  await this.HttpCardsService.deleteType(index);
+} catch (error) {
+  console.error(error)
+}
+this.getTypes();
+}
   async onAddNote(notes: Note) {       
-    console.log(notes);
     try {
       await this.HttpCardsService.postCard(notes);            
     } catch (err) {
@@ -48,15 +54,31 @@ export class AppComponent implements OnInit{
     }
     this.getData();
   }
-  async onEditNote(index: Note){
+  async onAddType(type: Types){
+    try {
+      await this.HttpCardsService.postType(type);
+    } catch (error) {
+      
+    }
+    this.getTypes();
+  }
+  async onEditNote(note: Note){
      try {
-      await this.HttpCardsService.editCard(index);
+      await this.HttpCardsService.editCard(note);
     } catch (err) {
       console.log(err);
     }    
   }
   ngOnInit() {     
     this.getData();
+    this.getTypes();    
+  }
+  async getTypes(){
+    try {
+      this.types = await this.HttpCardsService.getTypes();
+    } catch (error) {
+      
+    }
   }
   async getData(){
     try{

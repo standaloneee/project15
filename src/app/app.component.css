@@ -1,15 +1,23 @@
-.card-main{
+.card-main {
     width: auto;
 }
+
 .maintext {
     width: 300px;
     height: 300px;
 }
 
+.wrap {
+    margin-left: 30px;
+    margin-right: 30px;
+}
+
+
 /* .card {
     border: 1px black solid;
     /* можно ширину поменьше сделать, но я думаю так лучше выглядит */
-    
+
+
 /* 
 .wrap{
     display: grid;
@@ -27,24 +35,27 @@
         grid-template-columns: 1fr 1fr 1fr 1fr;
     }
 } */
-.wrap{
+
+.wrap {
     display: grid;
     grid-template-columns: 1fr;
     /* min-width: 1000px; */
 }
-@media (min-width:800px){
-    .wrap{
+
+@media (min-width:800px) {
+    .wrap {
         grid-template-columns: 1fr 1fr;
-        min-width: 800px;      
+        min-width: 800px;
     }
 }
-@media (min-width:1200px){
-    .wrap{
-        grid-template-columns: 1fr 1fr 1fr 1fr;        
+
+@media (min-width:1200px) {
+    .wrap {
+        grid-template-columns: 1fr 1fr 1fr 1fr;
     }
-    
 }
-.top{
+
+.top {
     margin-left: 20px;
     margin-top: 20px;
 }

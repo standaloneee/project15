@@ -1,4 +1,4 @@
-<app-note-form (noteAdd)="onAddNote($event)"></app-note-form>
+<app-note-form [types]='types' (noteAdd)="onAddNote($event)" (deleteType)="onDeleteType($event)" (typeAdd)="onAddType($event)"></app-note-form>
 <div class="wrap">
     <app-note-card class="card-main" *ngFor="let note of notes; let i = index" [inputNote]="note" (noteDelete)="onDeleteNote($event)" (noteEdit)="onEditNote($event)"></app-note-card>
 </div>

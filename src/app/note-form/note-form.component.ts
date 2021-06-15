@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Note } from '../interface';
+import { HttpCardsService } from '../shared/services/http-cards.service';
 import { Types } from '../types';
 
 
@@ -10,56 +11,49 @@ import { Types } from '../types';
   styleUrls: ['./note-form.component.css']
 })
 export class NoteFormComponent implements OnInit {
-@Output() noteAdd = new EventEmitter<Note>();
-@Output() typeAdd = new EventEmitter<Types>();
-@Input() types!: Types;
-article: string = ''; 
-maintext: string = '';
-idnumber: number = 1;
-cardForm!: FormGroup;
-typesForm!: FormGroup;
-typename: string = "";
+  @Output() noteAdd = new EventEmitter<Note>();
+  @Output() typeAdd = new EventEmitter<Types>();
+  @Output() deleteType = new EventEmitter<number>();
+  @Input() types: Types | any;
+  article: string = '';
+  maintext: string = '';
+  cardForm!: FormGroup;
+  typesForm!: FormGroup;
+  expression: boolean = true;
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private HttpCardsService: HttpCardsService) { }
 
-  ngOnInit(): void {  
+  ngOnInit(): void {
+
     const controls = {
-      name:[null, [Validators.required]],
+      name: [null, [Validators.required]],
       maintext: [null, [Validators.required]],
       date: new Date,
-      // type: [null, [Validators.required]]
-      type: [null]      
+      type: [null, [Validators.required]]
+      // type: [null]      
     }
     const types = {
       name: [null, [Validators.required]]
     }
     this.cardForm = this.fb.group(controls);
     this.typesForm = this.fb.group(types);
+    // this.getTypes();
   }
-  async onAddNote(){
-    const card = this.cardForm.value;
-    this.article='';
-    this.maintext='';      
+  onAddNote() {
     this.cardForm.controls['date'].setValue(new Date);
-    this.cardForm.controls['name'].setValue(this.article);
-    this.cardForm.controls['maintext'].setValue(this.maintext); 
-    let typeid = this.typesForm.controls['name'].value;
-    this.cardForm.controls['type'].setValue('typeid');   
+    const card = this.cardForm.value;
     this.noteAdd.emit(card);
+    this.cardForm.reset();
   }
-
-  async onAddType(){
-    // let newNote: { id: number, name: string};
-    // newNote = { id: 1, name: this.typename_};
-    // this.types.name = 'test';
-    // this.types.id = 1;
-    // console.log(this.types)
-// this.types.push(newNote);
-
-    // const type_ = this.typesForm.value;
-    // this.types.name = this.typesForm.types["name"].value;
-    // this.noteAdd.emit(type_)
-    // console.log(this.types)
+  onAddType() {
+const type = this.typesForm.value;
+this.typeAdd.emit(type);
   }
-
+  onChangeExpression() {
+    this.expression = !this.expression;
+  }
+  onDeleteType(index: number) {
+    console.log(index)
+    this.deleteType.emit(index);
+  }
 }
