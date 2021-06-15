@@ -1,6 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-// import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Note } from '../interface';
 import { Types } from '../types';
 import { HttpCardsService } from '../shared/services/http-cards.service';
@@ -21,7 +20,6 @@ export class NoteCardComponent implements OnInit {
   condition = true;
   cardForm!: FormGroup;
   typesForm!: FormGroup;
-  // types!: Types[];
 
 
   constructor(private HttpCardsService: HttpCardsService,
@@ -99,7 +97,4 @@ export class NoteCardComponent implements OnInit {
       }
     }
   }
-
-
-
 }

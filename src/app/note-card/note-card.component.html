@@ -1,6 +1,5 @@
 <div class="top">
     <div class="card" *ngIf="condition">
-
         <p>{{inputNote.id}}.{{inputNote.name}}</p>
         <p>{{inputNote.maintext}}</p>
         <p *ngIf="inputNote.dataChanged == null; else editblock">Дата добавления: {{inputNote.date|date:'dd.MM.yyyy HH:mm:ss'}}</p>
@@ -8,14 +7,9 @@
         <ng-template #editblock>
             <p>Дата изменения: {{inputNote.dataChanged|date:'dd.MM.yyyy HH:mm:ss'}}</p>
         </ng-template>
-
-
-        <!-- <p>Тип заметки: <a href="http://localhost:3000/Types/{{inputNote.type}}">{{typename}}</a></p> -->
         <input type="button" value="Удалить" (click)="onDeleteNote()">
         <input type="button" value="Редактировать" (click)="onEditNote()">
-
     </div>
-
     <div class="card" *ngIf="!condition">
         <form [formGroup]='cardForm'>
             <p><input type="text" name="notetitle" formControlName="name"></p>
@@ -25,6 +19,5 @@
               </select></p>
         </form>
         <input type="button" value="Сохранить" (click)="onEditNoteSave()">
-
     </div>
 </div>
