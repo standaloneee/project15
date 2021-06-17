@@ -15,7 +15,7 @@
     </form>
     <div *ngIf="expression" class="element">
         <form [formGroup]='typesForm'>
-            <input style="width: 200px;" class="button" type="button" value="Редактировать тип" (click)="onChangeExpression()">
+            <input style="width: 200px;" class="btn btn-secondary" type="button" value="Редактировать тип" (click)="onChangeExpression()">
         </form>
     </div>
     <div *ngIf="!expression" class="elementEdit">
@@ -53,5 +53,5 @@
         </form>
     </div>
 
-    <input type="submit" value="Добавить заметку" [disabled]='cardForm.invalid' class="element">
+    <input class="btn btn-success" type="submit" value="Добавить заметку" [disabled]='cardForm.invalid' style=" margin: 10px;width: 200px;">
 </form>

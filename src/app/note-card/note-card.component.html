@@ -1,13 +1,13 @@
 <div class="top">
     <div class="card" *ngIf="condition">
-        <p>{{inputNote.id}}.{{inputNote.name}}</p>
+        <p>{{inputNote.id}}. {{inputNote.name}}</p>
         <p>{{inputNote.maintext}}</p>
         <p *ngIf="inputNote.dataChanged == null; else editblock">Дата добавления: {{inputNote.date|date:'dd.MM.yyyy HH:mm:ss'}}</p>
         <p>Тип заметки: {{getTypeName(inputNote.type)}}</p>
         <ng-template #editblock>
             <p>Дата изменения: {{inputNote.dataChanged|date:'dd.MM.yyyy HH:mm:ss'}}</p>
         </ng-template>
-        <input style="margin: 10px;" class="btn btn-secondary" type="button" value="Удалить" (click)="onDeleteNote()">
+        <input style="margin: 10px;" class="btn btn-danger" type="button" value="Удалить" (click)="onDeleteNote()">
         <input style="margin: 10px;" class="btn btn-secondary" type="button" value="Редактировать" (click)="onEditNote()">
     </div>
     <div class="card" *ngIf="!condition">
@@ -18,6 +18,6 @@
                 <option name="typename" *ngFor="let type of types" [ngValue]='type.id' >{{type.name}}</option>
               </select></p>
         </form>
-        <input type="button" value="Сохранить" (click)="onEditNoteSave()">
+        <input class="btn btn-success" type="button" value="Сохранить" (click)="onEditNoteSave()">
     </div>
 </div>
