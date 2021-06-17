@@ -1,10 +1,10 @@
 <form class="top" [formGroup]="cardForm" (ngSubmit)="onAddNote()">
     <h2 class="element" style="width: 450px">Добавление заметки</h2>
-    <p class="element"><input style="width:192px" type="text" name="article" formControlName="name" [ngClass]="{'has-error': cardForm.get('name')?.invalid &&
-    cardForm.get('name')?.touched}"> Заголовок</p>
+    <p class="element"><input placeholder="Заголовок" style="width:192px" type="text" name="article" formControlName="name" [ngClass]="{'has-error': cardForm.get('name')?.invalid &&
+    cardForm.get('name')?.touched}"></p>
     <p class="element">
-        <textarea style="height:100px; width:194px" name="maintext" id="1" class="maintext" formControlName="maintext" [ngClass]="{'has-error': cardForm.get('maintext')?.invalid &&
-    cardForm.get('maintext')?.touched}"></textarea> Текст записки
+        <textarea placeholder="Текст заметки" style="height:100px; width:194px" name="maintext" id="1" class="maintext" formControlName="maintext" [ngClass]="{'has-error': cardForm.get('maintext')?.invalid &&
+    cardForm.get('maintext')?.touched}"></textarea>
     </p>
     <form class="element" [formGroup]="cardForm" style="margin-bottom: 15px;">
         <div>
@@ -15,7 +15,7 @@
     </form>
     <div *ngIf="expression" class="element">
         <form [formGroup]='typesForm'>
-            <input class="button" type="button" value="Редактировать тип" (click)="onChangeExpression()">
+            <input style="width: 200px;" class="button" type="button" value="Редактировать тип" (click)="onChangeExpression()">
         </form>
     </div>
     <div *ngIf="!expression" class="elementEdit">
@@ -26,9 +26,9 @@
             <table class="table">
                 <thead>
                     <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">First</th>
-                        <th scope="col">Last</th>
+                        <th scope="col">ID</th>
+                        <th scope="col">Тип заметки</th>
+                        <th scope="col">Кнопка</th>
                     </tr>
                 </thead>
                 <tbody *ngFor="let type of types">
