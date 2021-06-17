@@ -7,8 +7,8 @@
         <ng-template #editblock>
             <p>Дата изменения: {{inputNote.dataChanged|date:'dd.MM.yyyy HH:mm:ss'}}</p>
         </ng-template>
-        <input type="button" value="Удалить" (click)="onDeleteNote()">
-        <input type="button" value="Редактировать" (click)="onEditNote()">
+        <input style="margin: 10px;" class="btn btn-secondary" type="button" value="Удалить" (click)="onDeleteNote()">
+        <input style="margin: 10px;" class="btn btn-secondary" type="button" value="Редактировать" (click)="onEditNote()">
     </div>
     <div class="card" *ngIf="!condition">
         <form [formGroup]='cardForm'>

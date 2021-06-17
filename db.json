@@ -1,51 +1,20 @@
 {
   "cards": [
     {
-      "name": "fdgfgd",
-      "maintext": "fdgdg",
-      "date": "2021-06-15T17:37:35.004Z",
-      "type": 4,
-      "id": 1,
-      "dataChanged": "2021-06-15T20:06:08.692Z"
-    },
-    {
-      "name": "fsdvvf",
-      "maintext": "fdsfdsf",
-      "date": "2021-06-15T17:37:59.864Z",
-      "type": 2,
-      "id": 2,
-      "dataChanged": "2021-06-15T20:39:52.060Z"
-    },
-    {
-      "name": "fdssfsf4324324",
-      "maintext": "sdfdsfdsf13324",
-      "date": "2021-06-15T17:51:27.200Z",
-      "type": 1,
-      "id": 4,
-      "dataChanged": "2021-06-15T20:37:34.131Z"
-    },
-    {
-      "name": "3243243234",
-      "maintext": "апавпавпавпавпавп",
-      "date": "2021-06-15T19:04:25.800Z",
-      "type": 4,
-      "id": 5,
-      "dataChanged": "2021-06-15T20:38:18.952Z"
-    },
-    {
       "name": "fgvfxg",
       "maintext": "dfssds",
       "date": "2021-06-15T20:36:03.288Z",
       "type": 3,
       "id": 6,
-      "dataChanged": "2021-06-15T20:36:14.219Z"
+      "dataChanged": "2021-06-17T22:53:41.193Z"
     },
     {
       "name": "вывыавыа",
       "maintext": "ваыыа",
       "date": "2021-06-15T20:37:49.563Z",
-      "type": 1,
-      "id": 7
+      "type": 2,
+      "id": 7,
+      "dataChanged": "2021-06-17T23:00:50.121Z"
     },
     {
       "name": "выавы",
@@ -60,6 +29,14 @@
       "date": "2021-06-15T20:39:34.364Z",
       "type": 3,
       "id": 9
+    },
+    {
+      "name": "fdfdsf",
+      "maintext": "wdsasad",
+      "date": "2021-06-16T19:48:46.267Z",
+      "type": 1,
+      "id": 10,
+      "dataChanged": "2021-06-16T19:49:36.960Z"
     }
   ],
   "Types": [
@@ -72,11 +49,11 @@
       "id": 2
     },
     {
-      "name": "Архив",
+      "name": "Важная дата",
       "id": 3
     },
     {
-      "name": "Важная дата",
+      "name": "Архив",
       "id": 4
     }
   ]

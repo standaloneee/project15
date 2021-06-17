@@ -32,7 +32,7 @@ typesAPI = 'http://localhost:3000/Types';
     return this.http.delete(this.typesAPI+`/${id}`).toPromise();
   }
   postType(type: Types){
-    console.log(type)
+    
     return this.http.post(this.typesAPI, type).toPromise();
   }
 }

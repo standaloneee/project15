@@ -29,15 +29,13 @@ export class NoteFormComponent implements OnInit {
       name: [null, [Validators.required]],
       maintext: [null, [Validators.required]],
       date: new Date,
-      type: [null, [Validators.required]]
-      // type: [null]      
+      type: [null, [Validators.required]]  
     }
     const types = {
       name: [null, [Validators.required]]
     }
     this.cardForm = this.fb.group(controls);
     this.typesForm = this.fb.group(types);
-    // this.getTypes();
   }
   onAddNote() {
     this.cardForm.controls['date'].setValue(new Date);

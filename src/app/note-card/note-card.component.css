@@ -1,4 +1,9 @@
 .card {
     border: 1px black solid;
     margin: 10px;
+    padding-top: 5px;
+}
+
+p {
+    padding-left: 10px;
 }
